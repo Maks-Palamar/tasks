@@ -9,7 +9,8 @@ const form = document.querySelector('.form');
 const loader = document.querySelector('.loader');
 const loadmoreBtn = document.querySelector('.load-more-btn');
 const newCard = document.querySelector('.card');
-const bottomLoader = document.querySelector('.bottom-loader')
+const bottomLoader = document.querySelector('.bottom-loader');
+const gallery = document.querySelector('.cards');
 let lastScrollPosition = window.pageYOffset;
 
 let page = 1;
@@ -55,7 +56,6 @@ form.addEventListener('submit', async (event) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
             
         if (data.hits.length === 0) {
-            const gallery = document.querySelector('.cards');
             gallery.innerHTML = '';  
             hideLoader();
             hideLoadBtn();
@@ -209,3 +209,23 @@ window.addEventListener('scroll', () => {
     }
     lastScrollPosition = currentScrollPosition;
 });
+
+/*---------------------*/
+
+const scrollBtn = document.querySelector('.scroll-btn');
+const formTop = form.offsetTop;
+
+scrollBtn.addEventListener('click', () => {
+ window.scrollTo({ top: formTop, behavior: 'smooth'});
+})
+
+const galleryTop = gallery.offsetTop;
+
+window.addEventListener('scroll', () => {
+    let scrolled = window.scrollY || window.pageYOffset;
+    if (scrolled <= galleryTop) {
+        scrollBtn.style.display = 'none'
+    } else {
+        scrollBtn.style.display = 'block'
+    }
+})
