@@ -216,16 +216,16 @@ const scrollBtn = document.querySelector('.scroll-btn');
 const formTop = form.offsetTop;
 
 scrollBtn.addEventListener('click', () => {
- window.scrollTo({ top: formTop, behavior: 'smooth'});
+    window.scrollTo({ top: formTop, behavior: 'smooth' });
 })
 
 const galleryTop = gallery.offsetTop;
 
 window.addEventListener('scroll', () => {
     let scrolled = window.scrollY || window.pageYOffset;
-    if (scrolled <= galleryTop) {
-        scrollBtn.style.display = 'none'
+    if (scrolled > galleryTop) {
+        scrollBtn.classList.add('show-scroll-btn')
     } else {
-        scrollBtn.style.display = 'block'
+        scrollBtn.classList.remove('show-scroll-btn')
     }
 })
